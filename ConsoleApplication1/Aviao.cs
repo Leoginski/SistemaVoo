@@ -14,6 +14,10 @@ namespace ConsoleApplication1
         private int assentos;
         private int assentosOcupados;  
                 
+        public Aviao(String prefixo)
+        {
+            this.prefixo = prefixo;
+        }
         public Aviao(String modelo, String prefixo, String fabricante)
         {
             this.modelo = modelo;
@@ -37,6 +41,16 @@ namespace ConsoleApplication1
         public String getPrefixo()
         {
             return this.prefixo;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as Aviao;
+            if (item.prefixo == this.prefixo)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

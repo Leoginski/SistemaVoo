@@ -12,11 +12,27 @@ namespace ListaEncadeada
             private No<T> cabeca;
             private int tamanho = 0;
 
+            public No<T> Cabeca
+            {
+                get { return cabeca; }
+                set { cabeca = value; }
+            }
+
+
+            public int Tamanho
+            {
+                get { return tamanho; }
+                set { tamanho = value; }
+            }
+
+
             public Lista(No<T> cabeca)
             {
                 this.cabeca = cabeca;
-                this.tamanho = 1;
+                this.tamanho++;
             }
+
+            public Lista(){}
 
             public void InsereInicio(No<T> no)
             {
@@ -30,6 +46,7 @@ namespace ListaEncadeada
                     no.prox = this.cabeca;
                     this.cabeca = no;
                 }
+                this.tamanho++;
             }
 
             public void RemoveInicio()
@@ -37,6 +54,7 @@ namespace ListaEncadeada
                 if (this.cabeca != null)
                 {
                     this.cabeca = null;
+                    this.tamanho--;
                 }
             }
 
@@ -55,6 +73,7 @@ namespace ListaEncadeada
                     }
                     aux.prox = no;
                 }
+                this.tamanho++;
             }
 
             public void RemoveFinal()
@@ -72,6 +91,7 @@ namespace ListaEncadeada
                 {
                     cabeca.prox = null;
                 }
+                this.tamanho--;
             }
 
             public No<T> BuscaIndice(int indice)
@@ -90,6 +110,7 @@ namespace ListaEncadeada
                 No<T> anterior  = this.buscaAnterior(aux);
                 anterior.prox = aux.prox;
                 aux = null;
+                this.tamanho--;
             }
 
             public No<T> buscaAnterior(No<T> no)
@@ -118,6 +139,7 @@ namespace ListaEncadeada
                 No<T> anterior = this.buscaAnterior(aux);
                 anterior.prox = aux.prox;
                 aux = null;
+                this.tamanho--;
             }
 
             public void ImprimirLista()

@@ -12,14 +12,17 @@ namespace ConsoleApplication1
         private String codigo;
         private String nome;
         private bool status;
-        private Lista destinos = new Lista();
-        private Lista avioesPatio = new Lista();
+        private Lista<Pais> destinos = new Lista<Pais>();
+        private Lista<Aviao> avioesPatio = new Lista<Aviao>();
 
-        public List<Aviao> AvioesPatio
+        // a) Um construtor que inicialize o código do aeroporto e seu nome.
+        public Aeroporto(String codigo, String nome)
         {
-            get { return avioesPatio; }
-            set { avioesPatio = value; }
+            Codigo = codigo;
+            Nome = nome;
         }
+
+        // b) Propriedades que manipulem os atributos que não são listas;
         public String Codigo
         {
             get { return codigo; }
@@ -36,12 +39,7 @@ namespace ConsoleApplication1
             set { status = value; }
         }
 
-        public Aeroporto(String codigo, String nome)
-        {
-            Codigo = codigo;
-            Nome = nome;
-        }
-
+        // c) Sobrescreva o método Equals da classe Object para verificar se um aeroporto é igual a ele(aeroportos são iguais se possuírem o mesmo código).
         public override bool Equals(object obj)
         {
             var item = obj as Aeroporto;
@@ -53,12 +51,31 @@ namespace ConsoleApplication1
             return (this.Codigo == item.Codigo);
         }
 
+        // d) Um método que receba um prefixo de avião como parâmetro e informe se a aeronave está pousada nele.
         public bool verificarAviaoPousado(String prefixo)
         {
-            
+            Aviao target = new Aviao(prefixo);
+            No<Aviao> no = new No<Aviao>(target);
+
+            if (this.avioesPatio.BuscaNo(no) != null)
+            {
+                return true;
+            }
+            return false;
         }
 
-
+        // e) Um método que receba um outro aeroporto como parâmetro e verifique se
+        // existe alguma forma de se chegar nele.Para isto, o aeroporto deve verificar se ele
+        // possui voo partindo para o aeroporto desejado, e caso não saia, se existe alguma forma de chegar nele à partir dos aeroportos de onde sai.
+        // Assinatura do método: public bool PossuiRota(Aeroporto aeroporto)
+        public bool PossuiRota(Aeroporto aeroporto)
+        {
+            for (int i = 0; i < this.destinos.Tamanho; i++)
+            {
+                
+            }
+            return true;
+        }
 
     }
 }
