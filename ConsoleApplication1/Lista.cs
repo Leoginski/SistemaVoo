@@ -9,157 +9,137 @@ namespace ListaEncadeada
         //Simple List
         public class Lista<T>
         {
-            private No No;
+            private No<T> cabeca;
+            private int tamanho = 0;
 
-            public void InsereInicio(object info)
+            public Lista(No<T> cabeca)
             {
-                if (No == null)
-                    No = new No(info);
-                else
-                    No = new No(info, No);
+                this.cabeca = cabeca;
+                this.tamanho = 1;
             }
 
-
-            public No RemoveInicio()
+            public void InsereInicio(No<T> no)
             {
-                No no = null;
-                if (No != null)
+                if (this.cabeca == null)
                 {
-                    no = No;
-                    No = No.Next;
+                    this.cabeca = no;
                 }
-                return no;
-            }
-
-
-            public void InsereFinal(T info)
-            {
-                if (No == null)
-                    No = new No(info);
                 else
                 {
-                    No noAux = No;
-                    while (noAux.Next != null)
+
+                    no.prox = this.cabeca;
+                    this.cabeca = no;
+                }
+            }
+
+            public void RemoveInicio()
+            {
+                if (this.cabeca != null)
+                {
+                    this.cabeca = null;
+                }
+            }
+
+            public void InsereFinal(No<T> no)
+            {
+                if (this.cabeca == null)
+                {
+                    this.cabeca = no;
+                }
+                else
+                {
+                    No<T> aux = this.cabeca;
+                    while (aux.prox != null)
                     {
-                        noAux = noAux.Next;
+                        aux = aux.prox;
                     }
-                    noAux.Next = new No(info);
+                    aux.prox = no;
                 }
             }
 
-
-
-            public No RemoveFinal()
+            public void RemoveFinal()
             {
-                No no = null;
-                No noAux;
-                No noAux2 = new No(null);
-                if (No != null)
+                if (cabeca.prox != null)
                 {
-                    noAux = No;
-                    while (noAux.Next != null)
+                    No<T> aux = this.cabeca;
+                    while (aux.prox != null)
                     {
-                        noAux2 = noAux;
-                        noAux = noAux.Next;
+                        aux = aux.prox;
                     }
-
-                    no = noAux;
-                    noAux = null;
-                    noAux2.Next = null;
+                    aux = null;
                 }
-                return no;
+                else
+                {
+                    cabeca.prox = null;
+                }
             }
 
-
-
-            public Nos Percorre()
+            public No<T> BuscaIndice(int indice)
             {
-                No noAux = No;
-                Nos nos = new Nos();
-                while (noAux != null)
+                No<T> aux = this.cabeca;
+                for (int i = 0; i<indice; i++)
                 {
-                    nos.Add(noAux);
-                    noAux = noAux.Next;
-                    Console.WriteLine(noAux.Info);
+                    aux = aux.prox;
                 }
-                return nos;
+                return aux;
             }
 
-
-            public int getTamanho()
+            public void RemoveIndice(int indice)
             {
-                int i = 0;
-                No noAux = No;
-                Nos nos = new Nos();
-                while (noAux != null)
+                No<T> aux = this.BuscaIndice(indice);
+                No<T> anterior  = this.buscaAnterior(aux);
+                anterior.prox = aux.prox;
+                aux = null;
+            }
+
+            public No<T> buscaAnterior(No<T> no)
+            {
+                No<T> aux = this.cabeca;
+                while (aux.prox != no)
                 {
-                    nos.Add(noAux);
-                    noAux = noAux.Next;
-                    Console.WriteLine(noAux.Info);
-                    i++;
+                    aux = aux.prox;
                 }
-                return i;
+                return aux;
+            }
+
+            public No<T> BuscaNo(No<T> no)
+            {
+                No<T> aux = this.cabeca;
+                while (!aux.Equals(no))
+                {
+                    aux = aux.prox;
+                }
+                return aux;
+            }
+
+            public void removeNo(No<T> no)
+            {
+                No<T> aux = this.BuscaNo(no);
+                No<T> anterior = this.buscaAnterior(aux);
+                anterior.prox = aux.prox;
+                aux = null;
             }
 
             public void ImprimirLista()
             {
-                if (No.Info == null)
+                if (cabeca == null)
+                {
                     Console.WriteLine("  Lista vazia");
+                }
                 else
                 {
-                    No atual = No;
-                    while (atual != null)
+                    No<T> aux = this.cabeca;
+                    while (aux.prox != null)
                     {
-                        Console.WriteLine("  {0}", atual.Info);
-
-                        atual = atual.Next;
+                        Console.WriteLine("  {0}", aux.valor);
+                        aux = aux.prox;
                     }
                 }
             }
-
-            public bool Busca(object info)
-            {
-                bool exists = false;
-                if (No != null)
-                {
-                    No noAux = No;
-                    while (noAux != null)
-                    {
-                        if (noAux.Info == info)
-                        {
-                            exists = true;
-                            break;
-                        }
-                        noAux = noAux.Next;
-                    }
-                }
-                return exists;
-            }
-
-            public bool BuscaIndice(object info)
-            {
-                bool exists = false;
-                if (No != null)
-                {
-                    No noAux = No;
-                    while (noAux != null)
-                    {
-                        if (noAux.Info == info)
-                        {
-                            exists = true;
-                            break;
-                        }
-                        noAux = noAux.Next;
-                    }
-                }
-                return exists;
-            }
-
-            public void Clear()
-            {
-                No = null;
-            }
-
         }
     }
 }
+
+
+
+

@@ -4,20 +4,20 @@
     {
         public class No<T>
         {
-            public No(object info, No next)
+            public T valor;
+            public No<T> prox;
+
+            public No(T valor, No<T>prox)
             {
-                this.Info = info;
-                this.Next = next;
+                this.valor = valor;
+                this.prox = prox;
             }
 
-            public No(object info)
+            public No(T valor)
             {
-                Info = info;
-                Next = null;
+                this.valor = valor;
+                this.prox = null;
             }
-
-            public T Info = null;
-            public No Next = null;
         }
     }
 }
