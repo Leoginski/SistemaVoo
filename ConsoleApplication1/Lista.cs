@@ -32,7 +32,10 @@ namespace ListaEncadeada
                 this.tamanho++;
             }
 
-            public Lista(){}
+            public Lista()
+            {
+                this.cabeca = null;
+            }
 
             public void InsereInicio(No<T> no)
             {

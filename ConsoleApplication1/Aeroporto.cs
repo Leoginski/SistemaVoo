@@ -68,24 +68,68 @@ namespace ConsoleApplication1
         // existe alguma forma de se chegar nele. Para isto, o aeroporto deve verificar se ele
         // possui voo partindo para o aeroporto desejado, e caso não saia, se existe alguma forma de chegar nele à partir dos aeroportos de onde sai.
         // Assinatura do método: public bool PossuiRota(Aeroporto aeroporto)
+        //public bool PossuiRota(Aeroporto aeroporto)
+        //{
+        //    for (int i = 0; i < this.destinos.Tamanho; i++)
+        //    {
+        //        if (this.destinos.BuscaIndice(i).valor.Equals(aeroporto))
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            No<Aeroporto> no = new No<Aeroporto>(aeroporto);
+        //            if (this.destinos.BuscaIndice(i).valor.destinos.BuscaNo(no) != 0)
+        //            {
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //    return false;
+        //}
+
         public bool PossuiRota(Aeroporto aeroporto)
         {
-            for (int i = 0; i < this.destinos.Tamanho; i++)
+
+            Lista<Aeroporto> nosVisitados = new Lista<Aeroporto>();
+            No<Aeroporto> no = new No<Aeroporto>(aeroporto);
+
+            if (this.destinos.BuscaNo(no) > 0)
             {
-                if (this.destinos.BuscaIndice(i).valor.Equals(aeroporto))
+                return true;
+            }
+            else
+            {
+                return this.PossuiRota(aeroporto, nosVisitados);
+            }
+        }
+
+        public bool PossuiRota(Aeroporto aeroporto, Lista<Aeroporto> nosVisitados)
+        {
+
+            No<Aeroporto> noVisitado = new No<Aeroporto>(this);
+            nosVisitados.InsereInicio(noVisitado);
+
+            if (this.destinos.Cabeca != null)
+            {
+                for (int i = 0; i < this.destinos.Tamanho; i++)
                 {
-                    return true;
-                }
-                else
-                {
-                    No<Aeroporto> no = new No<Aeroporto>(aeroporto);
-                    if (this.destinos.BuscaIndice(i).valor.destinos.BuscaNo(no) != 0)
+                    if (!(nosVisitados.BuscaNo(this.destinos.BuscaIndice(i)) > 0))
                     {
-                        return true;
+                        this.destinos.BuscaIndice(i).valor.PossuiRota(aeroporto, nosVisitados);
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
+                return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
+
         }
 
     }
