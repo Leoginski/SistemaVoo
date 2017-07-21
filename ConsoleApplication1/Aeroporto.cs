@@ -65,7 +65,7 @@ namespace ConsoleApplication1
         }
 
         // e) Um método que receba um outro aeroporto como parâmetro e verifique se
-        // existe alguma forma de se chegar nele.Para isto, o aeroporto deve verificar se ele
+        // existe alguma forma de se chegar nele. Para isto, o aeroporto deve verificar se ele
         // possui voo partindo para o aeroporto desejado, e caso não saia, se existe alguma forma de chegar nele à partir dos aeroportos de onde sai.
         // Assinatura do método: public bool PossuiRota(Aeroporto aeroporto)
         public bool PossuiRota(Aeroporto aeroporto)
@@ -79,7 +79,7 @@ namespace ConsoleApplication1
                 else
                 {
                     No<Aeroporto> no = new No<Aeroporto>(aeroporto);
-                    if (this.destinos.BuscaIndice(i).valor.destinos.BuscaNo(no) != null)
+                    if (this.destinos.BuscaIndice(i).valor.destinos.BuscaNo(no) != 0)
                     {
                         return true;
                     }

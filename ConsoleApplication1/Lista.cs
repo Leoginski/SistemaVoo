@@ -123,22 +123,25 @@ namespace ListaEncadeada
                 return aux;
             }
 
-            public No<T> BuscaNo(No<T> no)
+            public int BuscaNo(No<T> no)
             {
+                int i = 0;
                 No<T> aux = this.cabeca;
                 while (!aux.Equals(no))
                 {
                     aux = aux.prox;
+                    i++;
                 }
-                return aux;
+                return i;
             }
 
             public void removeNo(No<T> no)
             {
-                No<T> aux = this.BuscaNo(no);
-                No<T> anterior = this.buscaAnterior(aux);
-                anterior.prox = aux.prox;
-                aux = null;
+                int indice = this.BuscaNo(no);
+                No<T> atual = this.BuscaIndice(indice);
+                No<T> anterior = this.buscaAnterior(no);
+                anterior.prox = no.prox;
+                no = null;
                 this.tamanho--;
             }
 

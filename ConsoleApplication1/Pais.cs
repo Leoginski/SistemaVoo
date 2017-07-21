@@ -60,7 +60,7 @@ namespace ConsoleApplication1
         public bool VerificaFronteira(Pais pais)
         {
             No<Pais> no = new No<Pais>(pais);
-            return this.fronteiras.BuscaNo(no) != null ? true : false;
+            return this.fronteiras.BuscaNo(no) != 0 ? true : false;
         }
 
         // e) Um método que receba um outro país como parâmetro e retorne uma lista de vizinhos comuns aos dois países.

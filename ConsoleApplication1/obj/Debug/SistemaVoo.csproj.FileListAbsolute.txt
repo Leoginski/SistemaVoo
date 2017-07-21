@@ -4,3 +4,6 @@ E:\Aluno\Documents\Visual Studio 2015\Projects\ConsoleApplication1\ConsoleApplic
 E:\Aluno\Documents\Visual Studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\SistemaVoo.pdb
 E:\Aluno\Documents\Visual Studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\SistemaVoo.exe
 E:\Aluno\Documents\Visual Studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\SistemaVoo.pdb
+C:\Users\Aluno\Source\Repos\SistemaVoo\ConsoleApplication1\bin\Debug\SistemaVoo.exe.config
+C:\Users\Aluno\Source\Repos\SistemaVoo\ConsoleApplication1\obj\Debug\SistemaVoo.exe
+C:\Users\Aluno\Source\Repos\SistemaVoo\ConsoleApplication1\obj\Debug\SistemaVoo.pdb
