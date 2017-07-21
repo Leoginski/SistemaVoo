@@ -12,7 +12,7 @@ namespace ConsoleApplication1
         private String codigo;
         private String nome;
         private bool status;
-        private Lista<Pais> destinos = new Lista<Pais>();
+        private Lista<Aeroporto> destinos = new Lista<Aeroporto>();
         private Lista<Aviao> avioesPatio = new Lista<Aviao>();
 
         // a) Um construtor que inicialize o código do aeroporto e seu nome.
@@ -72,9 +72,20 @@ namespace ConsoleApplication1
         {
             for (int i = 0; i < this.destinos.Tamanho; i++)
             {
-                
+                if (this.destinos.BuscaIndice(i).valor.Equals(aeroporto))
+                {
+                    return true;
+                }
+                else
+                {
+                    No<Aeroporto> no = new No<Aeroporto>(aeroporto);
+                    if (this.destinos.BuscaIndice(i).valor.destinos.BuscaNo(no) != null)
+                    {
+                        return true;
+                    }
+                }
             }
-            return true;
+            return false;
         }
 
     }
