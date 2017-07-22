@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/SistemaVoo/v14/.suo
+/ConsoleApplication1/bin/Debug/SistemaVoo.vshost.exe.manifest

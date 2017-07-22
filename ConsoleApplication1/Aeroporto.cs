@@ -22,6 +22,18 @@ namespace ConsoleApplication1
             Nome = nome;
         }
 
+        public Lista<Aviao> AvioesPatio
+        {
+            get { return avioesPatio; }
+            set { avioesPatio = value; }
+        }
+
+        public Lista<Aeroporto> Destinos
+        {
+            get { return destinos; }
+            set { destinos = value; }
+        }
+
         // b) Propriedades que manipulem os atributos que não são listas;
         public String Codigo
         {
@@ -130,6 +142,18 @@ namespace ConsoleApplication1
                 return false;
             }
 
+        }
+
+        public void AddAvioes(Aviao aviao)
+        {
+            No<Aviao> no = new No<Aviao>(aviao);
+            this.AvioesPatio.InsereFinal(no);
+        }
+
+        public void AddDestinos(Aeroporto aeroporto)
+        {
+            No<Aeroporto> no = new No<Aeroporto>(aeroporto);
+            this.destinos.InsereFinal(no);
         }
 
     }

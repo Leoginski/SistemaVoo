@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaVoo
 {
-    public class ContaPoupanca : ContaCorrente
+    public class ContaPoupanca : Conta
     {
         private double taxaRendimento;
 

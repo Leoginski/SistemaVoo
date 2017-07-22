@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaVoo
 {
-    public class ContaEspecial : ContaCorrente
+    public class ContaEspecial : Conta
     {
         private double limiteExtra;
 

@@ -118,29 +118,43 @@ namespace ListaEncadeada
 
             public No<T> buscaAnterior(No<T> no)
             {
+                No<T> noAnterior = null;
                 No<T> aux = this.cabeca;
-                while (aux.prox != no)
+                while (aux.prox != null)
                 {
-                    aux = aux.prox;
+                    if (aux.prox.valor.Equals(no.valor))
+                    {
+                        noAnterior = aux.prox;
+                        break;
+                    }
                 }
-                return aux;
+                return noAnterior;
             }
 
-            public int BuscaNo(No<T> no)
+            public int? BuscaNo(No<T> no)
             {
-                int i = 0;
+                int? i = null;
+                int count = 0;
                 No<T> aux = this.cabeca;
-                while (!aux.Equals(no))
+                while (aux != null)
                 {
-                    aux = aux.prox;
-                    i++;
+                    if (aux.valor.Equals(no.valor))
+                    {
+                        i = count;
+                        break;
+                    }
+                    else
+                    {
+                        count++;
+                        aux = aux.prox;
+                    }
                 }
                 return i;
             }
 
             public void removeNo(No<T> no)
             {
-                int indice = this.BuscaNo(no);
+                int indice = this.BuscaNo(no).Value;
                 No<T> atual = this.BuscaIndice(indice);
                 No<T> anterior = this.buscaAnterior(no);
                 anterior.prox = no.prox;
@@ -157,7 +171,7 @@ namespace ListaEncadeada
                 else
                 {
                     No<T> aux = this.cabeca;
-                    while (aux.prox != null)
+                    while (aux != null)
                     {
                         Console.WriteLine("  {0}", aux.valor);
                         aux = aux.prox;
